@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-g
+const Workout = require("./models/workouts");
 const htmlRoutes = require("./routes/htmlRoutes");
 const apiRoutes = require("./routes/apiRoutes");
 
