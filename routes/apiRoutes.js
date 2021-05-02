@@ -4,14 +4,14 @@ const Workout = require("../models/workouts");
 // get all workouts
 router.get("/api/workouts", (req, res) => {
   //return the total duration for each workout
-    Workout.aggregate( [
+    Workout.aggregate([
     {
       $addFields: {
         // sum returns the sum of the specified expression (exercises.duration)
         totalDuration: { $sum: "$exercises.duration" }
       }
     }
-    ] )
+    ])
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -22,11 +22,12 @@ router.get("/api/workouts", (req, res) => {
   
 // creating a new workout
   router.post("/api/workouts", ({ body }, res) => {
-    Workout.create(body)
-      .then((dbWorkout) => {
+    Workout.create(body).then((dbWorkout) => {
+        console.log('test')
         res.json(dbWorkout);
       })
       .catch(err => {
+        console.log(err)
         res.json(err);
       });
   });
@@ -56,7 +57,7 @@ router.get("/api/workouts", (req, res) => {
           totalDuration: { $sum: "$exercises.duration" }
         }
       }
-      ] )
+      ])
       // limits amount of id's (workouts) to 7
       .limit(7)
       .then((dbWorkout) => {
