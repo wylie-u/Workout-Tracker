@@ -3,7 +3,15 @@ const Workout = require("../models/workouts");
 
 // get all workouts
 router.get("/api/workouts", (req, res) => {
-    db.Workout.find({})
+  //return the total duration for each workout
+    Workout.aggregate( [
+    {
+      $addFields: {
+        // sum returns the sum of the specified expression (exercises.duration)
+        totalDuration: { $sum: "$exercises.duration" }
+      }
+    }
+    ] )
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -11,10 +19,12 @@ router.get("/api/workouts", (req, res) => {
       res.json(err);
     });
   });
+  
 // creating a new workout
   router.post("/api/workouts", ({ body }, res) => {
-    db.Workout.create(body)
-      .then(dbWorkout => {
+    Workout.create(body)
+      .then((dbWorkout) => {
+        console.log('test')
         res.json(dbWorkout);
       })
       .catch(err => {
@@ -23,21 +33,40 @@ router.get("/api/workouts", (req, res) => {
   });
 
   // updating workout by id
-  router.put("/api/workouts/:id", (req, res) => {
+  router.put("/api/workouts/:id", ({ params, body }, res) => {
+    Workout.findByIdAndUpdate(params.id, {
+      $push: {
+        exercises: body,
+      },
+    })
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
 
-      db.Workout.findOneAndUpdate(
-          //find workout by id and update... then will send back into the exercises
-          { _id: mongojs.ObjectId(req.params.id)} , { $push: { 
-              exercises: req.body}}
-          ).then(dbWorkout => {
-            res.json(dbWorkout);
-          })
-          .catch(err => {
-            res.json(err);
-          });
-      
-    
-  })
+  // workouts in range
+   
+  router.post("/api/workouts/range", ({ body }, res) => {
+    Workout.aggregate( [
+      {
+        $addFields: {
+          // sum returns the sum of the specified expression (exercises.duration)
+          totalDuration: { $sum: "$exercises.duration" }
+        }
+      }
+      ] )
+      // limits amount of id's (workouts) to 7
+      .limit(7)
+      .then((dbWorkout) => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 
   module.exports = router;
   
