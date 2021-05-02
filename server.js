@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const Workout = require("./models/workouts");
+const Workout = require("./models/workouts");
 const htmlRoutes = require("./routes/htmlRoutes");
 const apiRoutes = require("./routes/apiRoutes");
 
@@ -15,7 +15,7 @@ app.use(express.json());
 // static files 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Workout", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

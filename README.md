@@ -9,17 +9,16 @@ This application utilizes MongoDB, Mongoose JS as well as Robo 3T, which hosts t
 The app is deployed through Heroku. **[Check out the site here!](https://note-taker-du-21.herokuapp.com/)**
 
 
-
 ## Table of Contents
 
  * [User Story](#User-Story)
- * [Building Tools](#Building-Tools) 
- * [Installation](#Installation) 
+ * [Building Tools](#Building-Tools)
  * [Credits](#Credits)
 
 
 
-![Site Photo](/public/assets/Note-Taker.png)
+![Site Photo](/public/images/workout_main.png)
+![Site Photo](/public/images/workout_dashboard.png)
 
 ## User Story
 <pre><code>AS a user, I want to be able to view create and track daily workouts. I want to be able to log multiple exercises in a workout on a given day. I should also be able to track the name, type, weight, sets, reps, and duration of exercise. If the exercise is a cardio exercise, I should be able to track my distance traveled.
