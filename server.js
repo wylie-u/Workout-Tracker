@@ -15,7 +15,8 @@ app.use(express.json());
 // static files 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+// edit localhost
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://wylieurig:Bobolaru1!@cluster0.p9xz2.mongodb.net/workout?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
