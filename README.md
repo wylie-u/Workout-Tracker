@@ -6,7 +6,7 @@ This project creates an application used to create and track daily workouts. The
 
 This application utilizes MongoDB, Mongoose JS as well as Robo 3T, which hosts the MongoDB deployments. To give the user the ability to add up and return the total duration for each workout, the application utilizes MongoDB's aggregate function, as well as the $addFields and $sum operators. 
 
-The app is deployed through Heroku. **[Check out the site here!](https://note-taker-du-21.herokuapp.com/)**
+The app is deployed through Heroku. **[Check out the site here!](https://wy-workout-tracker.herokuapp.com/)**
 
 
 ## Table of Contents
